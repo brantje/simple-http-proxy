@@ -31,6 +31,8 @@ RUN echo '#!/bin/sh'                                                            
     echo 'echo "server {"                                                                    >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "   listen 80 default_server;"                                                >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "   client_max_body_size ${MAX_BODY_SIZE};"                                   >> default.conf' >> /entrypoint/primer.sh && \
+    echo 'echo "   proxy_buffering off;"                                                     >> default.conf' >> /entrypoint/primer.sh && \
+    echo 'echo "   proxy_request_buffering off;"                                             >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "   location / {"                                                             >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "      include resolvers.conf;"                                               >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "      set \$upstream \"${FORWARD_PROT}://${FORWARD_HOST}:${FORWARD_PORT}\";" >> default.conf' >> /entrypoint/primer.sh && \
@@ -39,9 +41,10 @@ RUN echo '#!/bin/sh'                                                            
     echo 'echo "      proxy_pass_request_headers    on;"                                     >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "      proxy_http_version 1.1;"                                               >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "      proxy_set_header Upgrade \$http_upgrade;"                              >> default.conf' >> /entrypoint/primer.sh && \
-    echo 'echo "      proxy_set_header Connection \"Upgrade\";"                          >> default.conf' >> /entrypoint/primer.sh && \
+    echo 'echo "      proxy_set_header Connection \"Upgrade\";"                              >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "      client_max_body_size ${MAX_BODY_SIZE};"                                >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "      client_body_buffer_size ${MAX_BUFFER_SIZE};"                           >> default.conf' >> /entrypoint/primer.sh && \
+    echo 'echo "      chunked_transfer_encoding off;"                                        >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "   }"                                                                        >> default.conf' >> /entrypoint/primer.sh && \
     echo 'echo "}"                                                                           >> default.conf' >> /entrypoint/primer.sh && \
     echo 'cd /'                                                                                               >> /entrypoint/primer.sh && \
