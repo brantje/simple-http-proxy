@@ -1,5 +1,5 @@
 FROM            nginx:alpine
-MAINTAINER      Eugene Cheah <eugene@picoded.com>
+MAINTAINER      Eugene Cheah <eugene@picoded.com> | brantje
 
 RUN mkdir /entrypoint;
 
